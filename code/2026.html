@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Great+Vibes&family=Be+Vietnam+Pro&display=swap" rel="stylesheet">
+<style>
+  body{
+    margin:0;
+    height:100vh;
+    background:radial-gradient(circle at top,#c1121f,#780000);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Be Vietnam Pro',sans-serif;
+    overflow:hidden;}
+  canvas{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;}
+  .wrap{
+    text-align:center;
+    color:#fff;
+    z-index:2;
+    animation:fade 2s ease;}
+  .title{
+    font-family:'Great Vibes',cursive;
+    font-size:64px;
+    color:#fff1c1;
+    margin-top:-10px;}
+  .horse
+    {font-size:72px;
+    margin:20px 0;
+    animation:float 3s ease-in-out infinite;}
+  .sub{opacity:.9;}
+    .lantern{
+  position:fixed;
+  top:40px;
+  font-size:60px;
+  animation:swing 3s ease-in-out infinite;
+  z-index:1;}
+.lantern.left{ left:40px; }
+.lantern.right{ right:40px; }
+@keyframes swing{
+  0%,100%{ transform:rotate(0deg); }
+  50%{ transform:rotate(8deg); }}
+  .gold{
+  border-bottom:2px solid rgba(255,215,120,0.4);
+  padding-bottom:10px;}
+  .flowers{
+  position:fixed;
+  bottom:20px;
+  width:100%;
+  text-align:center;
+  font-size:32px;
+  opacity:.8;}
+  .next-btn{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  padding:14px 36px;
+  border-radius: 18px 0 0 0; 
+  background:linear-gradient(135deg,#ffd166,#e09f3e);
+  color:#780000;
+  text-decoration:none;
+  font-weight:600;
+  box-shadow:0 12px 30px rgba(0,0,0,.4);
+  transition:.3s;
+  z-index:10;}
+.next-btn:hover{
+  transform:translateY(-3px);}
+  .year{
+  font-family:'Montserrat',sans-serif;
+  font-size:110px;
+  letter-spacing:10px;
+  color:#ffd166;
+  text-shadow:0 12px 35px rgba(0,0,0,.5);
+}
+
+.year span{
+  opacity:0;
+  display:inline-block;
+  animation: popIn .6s ease forwards;
+}
+
+.year span:nth-child(1){ animation-delay:0s; }
+.year span:nth-child(2){ animation-delay:.3s; }
+.year span:nth-child(3){ animation-delay:.6s; }
+.year span:nth-child(4){ animation-delay:.9s; }
+
+@keyframes popIn{
+  from{
+    transform:translateY(40px) scale(.6);
+    opacity:0;
+  }
+  to{
+    transform:translateY(0) scale(1);
+    opacity:1;}}
+</style>
+</head>
+<body>
+<canvas id="fire"></canvas>
+<div class="wrap">
+  <div class="title">Happy New Year</div>
+  <div class="horse"> 🐎</div>
+  <div class="sub"> năm con ngựa:)</div>
+  </div>
+<div class="gold"></div>
+<div class="flowers">🌸 🌸 🌸</div>
+<div class="lantern left">🏮</div>
+<div class="lantern right">🏮</div>
+<div class="year">
+  <span>2</span><span>0</span><span>2</span><span>6</span>
+</div>
+<script>
+const c = fire, ctx = c.getContext("2d");
+c.width = innerWidth;
+c.height = innerHeight;
+
+function burst(x,y){
+  for(let i=0;i<70;i++){
+    const a = Math.random()*6.28;
+    const r = Math.random()*45;
+    ctx.fillStyle = "rgba(255,215,120,0.9)";
+    ctx.fillRect(
+      x + Math.cos(a)*r,
+      y + Math.sin(a)*r,
+      2,2);}}
+setInterval(()=>{
+  ctx.clearRect(0,0,c.width,c.height);
+  const count = 12 + Math.floor(Math.random()*5);
+  for(let i=0;i<count;i++){
+    const x = Math.random()*c.width;
+    const y = Math.random()*c.height*0.45;
+    burst(x,y);}}, 450);
+</script>
+<a class="next-btn" href="trang ke tiep.html">
+    ấn đây để xem tiếp
+</a>
+
+
+</body>
+</html>
+ 
+
+

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Câu hỏi đầu năm 💌</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&family=Dancing+Script&display=swap" rel="stylesheet">
+
+<style>
+  body{
+    margin:0;
+    height:100vh;
+    background:radial-gradient(circle at top,#ffe8a3,#ffd166);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Be Vietnam Pro',sans-serif;
+    overflow:hidden;
+  }
+
+  .decor{
+    position:fixed;
+    font-size:42px;
+    opacity:.8;
+  }
+  .decor.left{ left:20px; top:30px; }
+  .decor.right{ right:20px; top:30px; }
+
+  .card{
+    background:#fff;
+    padding:45px 55px;
+    border-radius:28px;
+    text-align:center;
+    box-shadow:0 30px 90px rgba(0,0,0,.25);
+    max-width:460px;
+    animation:pop .8s ease;
+  }
+
+  h1{
+    font-family:'Dancing Script',cursive;
+    font-size:44px;
+    color:#c1121f;
+    margin-bottom:20px;
+  }
+
+  p{
+    font-size:18px;
+    margin-bottom:35px;
+    line-height:1.6;
+  }
+
+  .btns{
+    display:flex;
+    gap:22px;
+    justify-content:center;
+  }
+
+  button{
+    padding:14px 32px;
+    border:none;
+    border-radius:999px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+  }
+
+  .yes{
+    background:#c1121f;
+    color:#fff;
+  }
+
+  .no{
+    background:#eee;
+  }
+
+  .yes:hover{ transform:scale(1.08); }
+  .no:hover{ transform:translateX(12px); }
+
+  /* icon thư */
+  .letter{
+    font-size:64px;
+    margin-top:25px;
+    cursor:pointer;
+    animation:float 2s ease-in-out infinite;
+  }
+
+  @keyframes pop{
+    from{transform:scale(.85);opacity:0}
+    to{transform:scale(1);opacity:1}
+  }
+  @keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-12px)}
+  }
+</style>
+</head>
+
+<body>
+
+<div class="decor left"> 🧧 🌸</div>
+<div class="decor right"> 🎊 ✨</div>
+
+<div class="card" id="box">
+  <h1>hỏi nè bé ơi</h1>
+  <p> siêu quan trọng <br>
+    Em có yêu <b>anh</b> hong
+  </p>
+
+  <div class="btns">
+    <button class="yes" onclick="yes()">Có 💖</button>
+    <button class="no" onclick="no()">Không 🙃</button>
+  </div>
+</div>
+
+<script>
+function yes(){
+  document.getElementById("box").innerHTML = `
+    <h1>🎉 đúng rồi!</h1>
+    <p>
+      hehe cảm ơn bé chọn yêu anh nha<br>
+      Thưởng cho em nè
+    </p>
+
+    <div class="letter" onclick="openLetter()">
+      💌
+    </div>
+    <p style="font-size:14px;opacity:.8;">
+      (Ấn vào để mở)
+    </p>
+  `;
+}
+
+function no(){
+  document.getElementById("box").innerHTML = `
+    <h1>😠 ê!</h1>
+    <p style="font-size:20px;">
+      Ai cho em chọn cái này<br>
+      Chọn lại đi!
+    </p>
+    <div style="font-size:34px;">😡 💢 </div>
+    <div style="margin-top:25px;">
+      <button class="yes" onclick="yes()">Có 💖</button>
+    </div>
+  `;
+}
+
+function openLetter(){
+  window.location.href = "thu-yeu.html";
+}
+</script>
+
+</body>
+</html>

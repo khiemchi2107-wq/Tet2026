@@ -1,0 +1,10 @@
+from PIL import Image
+import matplotlib.pyplot as plt
+
+# Load the image
+img = Image.open('/e:/ebe.jpg')
+
+# Display the image
+plt.imshow(img)
+plt.axis('off')
+plt.show(open)

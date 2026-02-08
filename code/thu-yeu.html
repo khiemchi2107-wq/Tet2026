@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Thiệp Tết 💌</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:radial-gradient(circle at top,#ffe6a7,#b1121f);
+  font-family:'Be Vietnam Pro',sans-serif;
+  overflow:hidden;
+}
+
+/* ===== KHUNG ===== */
+.scene{
+  position:relative;
+}
+
+/* ===== LÁ THƯ ===== */
+.letter{
+  position:absolute;
+  left:50%;
+  bottom:40px;
+  transform:translateX(-50%) scale(.65);
+  transform-origin: top center;
+  width:360px;
+  height:220px;      /* giữ gọn trong bì */
+
+  background:#fffef8;
+  border:1px solid #e0d7c3;
+  box-shadow:0 6px 15px rgba(0,0,0,.25);
+  z-index:1;
+  transition:1s;
+  cursor:pointer;
+
+  overflow:hidden;   /* ẩn phần dư */
+}
+
+
+
+/* nội dung thư */
+.paper{
+  width:100%;
+  max-height:70vh;   /* cao tối đa theo màn hình */
+  overflow-y:auto;   /* tràn thì cuộn */
+  padding:25px;
+  background:#fffef8;
+  box-shadow:none;
+border-radius:0;
+  opacity:1;
+  transition:1s;
+}
+
+
+/* nút trong thư */
+.btn{
+  margin-top:20px;
+  padding:10px 16px;
+  background:#b1121f;
+  color:#ffd966;
+  border:none;
+  cursor:pointer;
+  font-size:14px;
+}
+
+/* ===== PHONG BÌ ===== */
+.envelope{
+  position:relative;
+  width:420px;
+  height:260px;
+  background:#b1121f;
+  border-radius:12px;
+  box-shadow:0 25px 60px rgba(0,0,0,.45);
+  overflow:hidden;
+  z-index:5;
+}
+
+.envelope::before{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border:2px solid rgba(255,215,120,.8);
+  border-radius:8px;
+}
+
+/* nắp */
+.flap{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:55%;
+  background:#c4162a;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top;
+  transition:1s;
+  z-index:10;
+}
+
+/* sáp */
+.wax{
+  position:absolute;
+  top:52%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:64px;
+  height:64px;
+  background:radial-gradient(circle at 30% 30%,#ff7a7a,#8b0000);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#ffd966;
+  font-size:26px;
+  cursor:pointer;
+  z-index:20;
+  transition:.5s;
+}
+
+/* ===== TRẠNG THÁI ===== */
+.open .wax{
+  opacity:0;
+  transform:translate(-50%,-50%) scale(.6);
+}
+
+.open .flap{
+  transform:rotateX(180deg);
+}
+
+.open .letter{
+  top:50%;
+  bottom:auto;
+  transform:translate(-50%, -50%) scale(1);
+z-index:15;
+}
+
+
+/* thư bung to */
+.expand .letter{
+  width:580px;
+  max-height:80vh;
+  height:auto;        /* lúc này mới cho dài */
+  overflow:visible;
+}
+
+/* ===== LỜI CHÚC CUỐI ===== */
+.final{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  pointer-events:none;
+  transition:.6s;
+   z-index:999;
+}
+
+.final.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.final-box{
+  background:#fffef8;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 30px 60px rgba(0,0,0,.4);
+}
+
+.final-box img{
+  width:200px;
+  margin-top:20px;
+}
+
+/* decor */
+.decor{
+  position:absolute;
+  font-size:36px;
+}
+.d1{top:-40px;left:-40px}
+.d2{top:-40px;right:-40px}
+.d3{bottom:-40px;left:-40px}
+.d4{bottom:-40px;right:-40px}
+.hearts span{
+  position:absolute;
+  font-size:18px;
+  animation: floatUp 4s linear infinite;
+}
+
+@keyframes floatUp{
+  from{
+    transform:translateY(0) scale(1);
+    opacity:1;
+  }
+  to{
+    transform:translateY(-120px) scale(.6);
+    opacity:0;
+  }
+}
+.sparkles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 20% 30%,rgba(255,255,255,.35),transparent 40%),
+    radial-gradient(circle at 80% 40%,rgba(255,255,255,.25),transparent 40%),
+    radial-gradient(circle at 50% 70%,rgba(255,255,255,.3),transparent 40%);
+  animation: sparkleMove 6s infinite alternate;
+}
+
+@keyframes sparkleMove{
+  from{transform:scale(1)}
+  to{transform:scale(1.15)}
+}
+.petals span{
+  position:fixed;
+  top:-20px;
+  font-size:18px;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+    opacity:0;
+  }
+}
+
+
+
+
+</style>
+</head>
+
+<body>
+
+<div class="scene" id="scene">
+
+  <!-- LÁ THƯ -->
+  <div class="letter" onclick="expandLetter()">
+    <div class="paper">
+      <!-- mày viết thư ở đây -->Ngày 17 tháng 1 năm 2026<br>
+       gửi bé 🐟<br>
+       Vậy là mình bên nhau đến Tết rồi ha.Thật sự là điều đặc biệt nhất anh với anh 1 năm qua là được gặp em và yêu em.5 tháng thôi nhưng anh tự thấy mình thay đổi nhiều lắm ấy.khoảng thời gian trước của anh thật sự không có gì đặc biệt;quen với việc ở một mình,làm mọi thứ một mình thật sự là chỉ biết đến bản thân (anh không thật sự quan tâm đến mọi người xung quanh nhiều thế).<br></p>
+      Nhưng từ khi yêu em,anh bắt đầu biết cảm giác nhớ ai đó nhiều,biết chờ đợi từng dòng tin nhắn của 1 người,biết cười chỉ vì dòng tin nhắn,biết lo lắng,biết cố gắng nhiều hơn dù có nản.Em biến những điều bình thường nhất cũng trở nên ý nghĩa với anh.<br><p></p>
+      Anh cũng chưa quen với cảm giác yêu xa này như việc không thể đón năm mới cùng em.Nhiều lúc muốn kệ mọi thứ chỉ để đến gặp em thôi.Nhưng mà cũng vì thế mà anh trân trọng em nhiều hơn,anh trân trọng từng phút giây được nói chuyện với em,nhớ rõ những lần quan tâm nhau.<br><p></p>
+      Bé ơi anh xin lỗi vì nhiều lần làm em giận hay lo vì mấy lần anh không để ý sức khỏe.Nhưng mà thật ra anh có để ý bản thân hơn chỉ là anh hay quên hoặc chưa quen kiểu trước đó anh nghĩ là cứ kệ cũng không ảnh hưởng đến ai (huhu anh sẽ cố khắc phục đừng trừ điểm anh :<).<br><p></p>
+      Anh không biết mọi chuyện sẽ đi đến đâu trong năm mới.Anh cũng không dám hứa trước điều gì.Nhưng anh biết rõ:cuộc sống của anh đã tốt hơn từ khi có em.<br><p></p>
+      Nếu sau này ta vẫn còn đồng hành cùng nhau thật lâu,anh sẽ rất biết ơn.Còn với anh hiện tại chỉ cần được yêu em,chỉ cần em vẫn còn ở đây đã đủ hạnh phúc lắm rồi.<br>
+      Cảm ơn ebe vì đã đến để anh được gặp em,cảm ơn vì kiên nhẫn với mối quan hệ này,cảm ơn em vì đã quan tâm anh.<br><p></p>
+      Tết đầu tiên được bên em cũng là Tết đặc biệt nhất của anh,mong rằng có xa mình vẫn bên cạnh nhau.Anh mong sẽ vẫn còn được bên em vào Tết kế tiếp,mong là sẽ được bên em vào ngày Tết đó(đợi anh nhé)<br>
+      Nếu một ngày nhìn lại, anh hy vọng mình sẽ mỉm cười vì đã từng yêu nhau chân thành như này.
+Còn bây giờ, từng ngày còn có em, anh sẽ luôn coi đó là điều may mắn nhất.<br>
+      Luv u so much <br>
+      -Nguyễn Trần Trọng Khiêm-<br>
+      
+      
+
+
+      <button class="btn" onclick="event.stopPropagation();showFinal()">Xem lời chúc cuối</button>
+    </div>
+  </div>
+  <div class="sparkles"></div>
+
+
+  <!-- PHONG BÌ -->
+  <div class="envelope">
+    <div class="flap"></div>
+    <div class="wax" onclick="openEnvelope()">luv</div>
+  </div>
+
+  <!-- DECOR -->
+  <div class="decor d1">🧧</div>
+  <div class="decor d2">🐎</div>
+  <div class="decor d3">🌸</div>
+  <div class="decor d4">🎊</div>
+</div>
+
+<!-- LỜI CHÚC CUỐI -->
+<div class="final" id="final">
+  <div class="final-box">
+    <h2>Lời chúc cuối cho ebe 💖</h2>
+    <p><!-- mày viết -->Năm mới rồi, anh chỉ mong em luôn bình an, vui vẻ. Mong những điều tốt đẹp nhất, những may mắn sẽ đến với em trong năm mới nà vì em xừng đáng với tất cả.
+      Anh mong em sẽ luôn giữ được nụ cười của mình sẽ luôn hạnh phúc và vẫn dễ thương như cách em xuất hiện trong cuộc sống của anh.Dù có chuyện gì xảy ra anh mong em luôn tin rằng có một người vẫn luôn dõi theo và mong muốn em được vui vẻ hạnh phúc.
+      Hy vọng năm mới mình vẫn có nhau, vẫn chọn nhau giữa nhiều lựa chọn khác, chậm một chút cũng được miễn là bên nhau.Nếu có thể hãy để anh được bên em,được chăm sóc em và yêu em nhiều hơn nữa nhé..
+      Năm mới mong rằng mọi điều tốt đẹp sẽ đến với em và gia đình em.Mong tụi mình không phải cố gắng quá nhiều mà vẫn có thể bên nhau hạnh phúc.
+    </p>
+    <p>🐺❤️🐟</p>
+    <img src="ebe.png" alt="Happy New Year">
+  </div>
+</div>
+<div class="hearts"></div>
+<div class="petals"></div>
+
+
+
+<script>
+function spawnHearts(){
+  const box = document.querySelector(".hearts");
+  for(let i=0;i<12;i++){
+    const h = document.createElement("span");
+    h.innerText="💖";
+    h.style.left=Math.random()*100+"%";
+    h.style.bottom="0";
+    h.style.animationDuration=3+Math.random()*2+"s";
+    box.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  }
+}
+
+
+function openEnvelope(){
+  const scene = document.getElementById("scene");
+
+  // mở phong bì
+  scene.classList.add("open");
+
+  // sau 1s → thư tự bung
+  setTimeout(()=>{
+  scene.classList.add("expand");
+
+  setTimeout(()=>{
+    autoFitLetter();
+
+    // 🔥 cuộn lên đầu
+    document.querySelector(".paper").scrollTop = 0;
+
+  },900);
+
+},1000);}
+
+
+
+function expandLetter(){
+  document.getElementById("scene").classList.add("expand");
+}
+
+function showFinal(){
+  document.getElementById("final").classList.add("show");}
+</script>
+
+</body>
+</html>
